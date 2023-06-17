@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+<h3 class="heading">Video Playlist</h3>
+<div class="search">
+    <input type="text" placeholder=" Search here ...." id="searchbar" onkeyup="search()" >
+</div>
+
+
+
+<div class="container">
+    <div class="main-video">
+        <div class="video">
+            <video src="video/vid1.mp4" controls muted autoplay></video>
+            <h3 class="title">1. Animated Video - 1</h3>
+        </div>
+    </div>
+    <div class="video-list">
+        
+        <div class="vid active">
+            <video src="video/vid1.mp4" muted></video>
+            <h3 class="title">1. Animated Video - 1 </h3>
+        </div>
+        <div class="vid">
+            <video src="video/vid2.mp4" muted></video>
+            <h3 class="title">2. Animated Video - 2 </h3>
+        </div>
+        <div class="vid">
+            <video src="video/vid3.mp4" muted></video>
+            <h3 class="title">3. Animated Video - 3 </h3>
+        </div>
+        <div class="vid">
+            <video src="video/vid4.mp4" muted></video>
+            <h3 class="title">4. Animated Video - 4 </h3>
+        </div>
+        <div class="vid">
+            <video src="video/vid5.mp4" muted></video>
+            <h3 class="title">5. Animated Video - 5 </h3>
+        </div>
+    </div>
+</div>
+
+<script>
+  
+
+  let listvideo = document.querySelectorAll('.video-list .vid');
+  let mainvideo = document.querySelector('.main-video video');
+  let title = document.querySelector('.main-video .title');
+
+  listvideo.forEach(video=>{
+    video.onclick =() =>{
+        listvideo.forEach(vid => vid.classList.remove('active'));
+        video.classList.add('active');
+        if(video.classList.contains('active')){
+            let src = video.children[0].getAttribute('src');
+            mainvideo.src=src;
+            let text = video.children[1].innerHTML;
+            title.innerHTML=text;
+        };
+    };
+
+  });
+
+
+</script>
+<script>
+
+function search() {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('vid');
+      
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="flex";                 
+        }
+    }
+}
+
+</script>
+</body>
+</html>
